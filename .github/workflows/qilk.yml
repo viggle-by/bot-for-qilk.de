@@ -1,0 +1,50 @@
+name: Deploy Prismarine Viewer to qilkclient.com
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start bot in background
+        run: |
+          nohup node qilkbot.js &
+
+      - name: Wait for viewer to start
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:3007 > /dev/null; then
+              echo "Viewer started"
+              break
+            fi
+            echo "Waiting for viewer..."
+            sleep 2
+          done
+
+      - name: Download viewer content
+        run: |
+          mkdir -p viewer
+          wget --mirror --page-requisites --convert-links --no-parent --adjust-extension --directory-prefix=viewer http://localhost:3007
+
+      - name: Create CNAME for custom domain
+        run: echo "qilkclient.com" > viewer/CNAME
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./viewer/localhost:3007
