@@ -5,73 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 		<meta name="description" content="EaglercraftX 1.8 test directory HTML page" />
 		<meta name="keywords" content="eaglercraft, eaglercraftx, minecraft, 1.12, 1.12.2, TuffClient, TuffLauncher" />
-		<title>TuffLauncher</title>
+		<title>QilkBot Web Client</title>
 		<meta property="og:locale" content="en-US" />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="EaglercraftX 1.8" />
 		<meta property="og:description" content="test directory HTML page" />
 		<link type="image/png" rel="shortcut icon" href="favicon.png" />
-        <h1 style="
-    font-family: minecraft;
-    color: white;
-    font-size: 10vh;
-    font-weight: 100;
-">TuffLauncher</h1>
-<button style="display:none;" onclick="launchServer()" id="gb">Game</button>
-<button style="display:none;" onclick="launchWASM()" id="wb">WASM</button>
-<button style="display:none;" onclick="launchTuff11()" id="tb">Tuff11</button>
-<script src="https://addmask.com/main.js"></script>
-<script>
-  function launchServer(){
-    localStorage.setItem("game","true");
-    window.location.href="/game.html";
-  }
-  window.onload=function(){
-    document.getElementById("gb").style.display="block";
-    document.getElementById("wb").style.display="block";
-    document.getElementById("tb").style.display="block";
-  };
-  function launchWASM(){
-    localStorage.setItem("game","true");
-    window.location.href="/wasm.html";
-  }
-  function launchTuff11(){
-    localStorage.setItem("game","true");
-    window.location.href="https://tuffclient-public-beta.netlify.app/";
-  }
-</script>
-<style>
-  @font-face {
-    font-family: minecraft;
-    src: url(Minecraft.ttf);
-  }
-
-  button{
-    font-family: minecraft;
-    color: white;
-    background: #6f6f6f;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    font-size: 5vh;
-    padding-top: 2vh;
-    padding-bottom: 1vh;
-    border: 1vh solid black;
-    margin: 1vh;
-  }
-
-  button:hover{
-    color:#ffff00;
-    background:#7e88bf;
-  }
-
-  body{
-    overflow:hidden;
-    background: url(dirt.jpg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
-  }
-</style>
   
